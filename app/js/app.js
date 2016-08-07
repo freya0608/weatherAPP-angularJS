@@ -36,14 +36,17 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
         })
     };
     loadList();
+    
+   
 
     var loadData = function(cb){
         var cityId =[];
         var detail=[];
+        
         for(var i=0;i<cityList.length;i++){
             cityId = cityList[i].d1;
             console.log(cityList[0].d1);
-            $http.jsonp('http://wthrcdn.etouch.cn/weather_mini?citykey='+cityId).then(function(res){
+            $http.jsonp('http://wthrcdn.etouch.cn/WeatherApi?citykey='+cityId).then(function(res){
                 detail = res.data;
                 console.log(res.data);
             });

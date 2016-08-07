@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta id="viewport" name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="app/css/home.css">
+    <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+    <script src="lib/bower_components/angular/angular.min.js"></script>
+    <script src="lib/xmlToJSON.js"></script>
+    <script src="app/js/cityList.js"></script>
+
+</head>
+
+<body ng-app="myapp" ng-controller="cityListController">
+    <div class="col-sm-8 col-sm-offset-2">
+        <form class="navbar-form navbar-left" role="search">
+            <label>
+                <i class=""></i>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="city"
+                           name="city"
+                           placeholder="请输入城市名称">
+                </div>
+                <button type="submit" class="btn btn-default"
+                        ng-click="editCity()">Submit</button>
+            </label>
+        </form>
+    </div>
+
+</body>
+</html>
