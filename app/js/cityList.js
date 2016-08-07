@@ -1,7 +1,7 @@
 /**
  * Created by Freya on 2016/7/31.
  */
-var app = angular.module('myapp',[]);
+var app = angular.module('myapp',['ngRoute']);
 app.controller('cityListController',['$scope','$http',function ($scope,$http) {
     var cityList = [];
     var cityId =[];
@@ -13,8 +13,8 @@ app.controller('cityListController',['$scope','$http',function ($scope,$http) {
             method:'GET',
             url:'app/json/cityList.json'
         }).then(function(res){
-
             cityList = res.data;
+            $scope.city = cityList;
         });
         for(var i = 0;i<cityList.length;i++){
             if(cityList[i].d2 === $scope.city){
@@ -33,14 +33,15 @@ app.controller('cityListController',['$scope','$http',function ($scope,$http) {
                 //     console.log($scope.weather);
                 // });
                 $http({method:'JSONP',
-                    url:'http://wthrcdn.etouch.cn/WeatherApi?citykey='+cityId+'&callback=JSON_CALLBACK',
+                    url:'http://wthrcdn.etouch.cn/weather_mini?citykey='+cityId+'&callback=JSON_CALLBACK',
                     headers:{
                         "Accept":"application/xml",
                         "Content-Type":"application/xml"
                     },
                     responseType:"text"
                 }).success(function (res) {
-                    console.log(arguments);
+                     $scope.weather = res.data;
+                    console.log(res.data);
                 })
             }
         }
