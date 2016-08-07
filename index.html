@@ -16,36 +16,45 @@
     <script src="app/js/app.js"></script>
 </head>
 <body ng-app="myapp" ng-controller="indexController">
-    <div class="navbar navbar-inverse"
-         style="margin: 10px 0 0  0 !important; background-color:#398439 ">
-        <div class="container">
-            <div class="navbar-header">
-                <span class="fa fa-home icon-color"></span>
-                <a class="navbar-brand">北京天气</a>
-                <span style="float: right">
-                    <span class="glyphicon glyphicon-map-marker icon-color"></span>
-                    <span class="fa fa-refresh fa-spin icon-color"></span>
-                </span>
-            </div>
-        </div>
+    <div class="nav navbar"
+         style="background-color:#398439 ">
+            <ul class="navbar-header icon-color">
+                <li class="fa fa-home ">
+                    <a class="navbar-brand">北京天气</a>
+                </li>
+                <li class="glyphicon glyphicon-map-marker "></li>
+                <li class="fa fa-refresh "></li>
+            </ul>
     </div>
 <!--整体内容-->
     <div class="container">
-        <!-- 城市名称布局-->
         <div class="">
-            <span class="col-xs-4 col-xs-offset-2">北京
-                <a>今天{{weather.time||'00:00'}}发布
-
-                </a>
-            </span>
-            <span class="col-xs-4 col-xs-offset-2">
-                <a>
-
-                </a>
-            </span>
-
+            <!-- 城市名称布局-->
+            <div class=" col-sm-6" ng-repeat="weather in weathers">
+                <div class="col-sm-4">{{weather.city}}
+                    <span>今天{{weather.update||'00:00'}}发布</span>
+                </div>
+                <div class="col-sm-4">
+                    <span>湿度：{{weather.shidu}}
+                    </span>
+                </div>
+            </div>
+            <!--pm2.5-->
+            <div class="col-sm-6" ng-repeat="environment in weather.environment ">
+                <span>PM2.5
+                    <li>{{environment.pm25}}</li>
+                </span>
+                <i class="fa fa-user"></i>
+                <div>{{environment.quality}}</div>
+            </div>
         </div>
         <!-- 当天天气布局-->
+        <div class="col-sm-2 col-sm-8" ng-repeat="forecast in weather.forecast">
+
+            <i ng-if="" class="">
+
+            </i>
+        </div>
 
         <!-- 未来三天布局-->
 

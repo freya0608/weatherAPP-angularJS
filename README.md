@@ -1,2 +1,1 @@
 # weatherAPP-angularJS
-<img >
