@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <link rel="stylesheet" href="app/css/home.css">
+    <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+    <script src="lib/bower_components/angular/angular.min.js"></script>
+
+    <script src="app/js/app.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="indexController">
+    <div class="navbar navbar-inverse"
+         style="margin: 10px 0 0  0 !important; background-color:#398439 ">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="fa fa-home icon-color"></span>
+                <a class="navbar-brand">北京天气</a>
+                <span style="float: right">
+                    <span class="glyphicon glyphicon-map-marker icon-color"></span>
+                    <span class="fa fa-refresh fa-spin icon-color"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+<!--整体内容-->
+    <div class="container">
+        <!-- 城市名称布局-->
+        <div class="">
+            <span class="col-xs-4 col-xs-offset-2">北京
+                <a>今天{{weather.time||'00:00'}}发布
+
+                </a>
+            </span>
+            <span class="col-xs-4 col-xs-offset-2">
+                <a>
+
+                </a>
+            </span>
+
+        </div>
+        <!-- 当天天气布局-->
+
+        <!-- 未来三天布局-->
+
+    </div>
+
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+    </body>
+</html>
