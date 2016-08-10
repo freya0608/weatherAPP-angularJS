@@ -33,7 +33,8 @@ app.controller('cityListController',['$scope','$http',function ($scope,$http) {
                 //     console.log($scope.weather);
                 // });
                 $http({method:'JSONP',
-                    url:'http://wthrcdn.etouch.cn/weather_mini?citykey='+cityId+'&callback=JSON_CALLBACK',
+                    url:'http://wthrcdn.etouch.cn/weather_mini?citykey='
+                    +cityId+'&callback=JSON_CALLBACK',
                     headers:{
                         "Accept":"application/xml",
                         "Content-Type":"application/xml"

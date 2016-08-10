@@ -6,12 +6,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title></title>
     <link rel="stylesheet" href="app/css/home.css">
     <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.css">
     <link rel="stylesheet" href="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
     <script src="lib/bower_components/angular/angular.min.js"></script>
+    <script src="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="lib/angular-route.js"></script>
     <script src="lib/xmlToJSON.js"></script>
     <script src="app/js/weatherDetail.js"></script>
@@ -33,28 +34,40 @@
             <!-- 城市名称布局-->
             <div class=" col-sm-6" ng-repeat="weather in weathers">
                 <div class="col-sm-4">{{weather.city}}
-                    <span>今天{{weather.update||'00:00'}}发布</span>
+                    <span>今天发布</span>
                 </div>
-                <div class="col-sm-4">
-                    <span>湿度：{{weather.shidu}}
-                    </span>
-                </div>
+                <!--<div class="col-sm-4">-->
+                    <!--<span>湿度：{{weather.shidu}}-->
+                    <!--</span>-->
+                <!--</div>-->
             </div>
             <!--pm2.5-->
-            <div class="col-sm-6" ng-repeat="environment in weather.environment ">
-                <span>PM2.5
-                    <li>{{environment.pm25}}</li>
-                </span>
-                <i class="fa fa-user"></i>
-                <div>{{environment.quality}}</div>
-            </div>
+            <!--<div class="col-sm-6" ng-repeat="environment in weather.environment ">-->
+                <!--<span>PM2.5-->
+                    <!--<li>{{environment.pm25}}</li>-->
+                <!--</span>-->
+                <!--<i class="fa fa-user"></i>-->
+                <!--<div>{{environment.quality}}</div>-->
+            <!--</div>-->
         </div>
         <!-- 当天天气布局-->
         <div class="col-sm-2 col-sm-8" ng-repeat="forecast in weather.forecast">
-
             <i ng-if="" class="">
-
+                <img src="">
+                <p>{{forecast.date}}</p>
+                <p>{{forecast.low | limitTo : -4 }}- {{forecast.high | limitTo :-4 }}</p>
+                <p>{{forecast.type}}</p>
+                <p>{{forecast.fengxiang}}</p>
             </i>
+        </div>
+
+        <div class="">
+            <!--forecast第二组数据-->
+            <div class="col-sm-4">
+
+
+            </div>
+
         </div>
 
         <!-- 未来三天布局-->
@@ -62,14 +75,15 @@
     </div>
 
 
-    <script type="text/ng-template" id="myModalContent.html">
+    <script type="text/ng-template" id="myModalCity.html">
         <div class="modal-header">
             <h3 class="modal-title">I'm a modal!</h3>
         </div>
         <div class="modal-body">
             <ul>
                 <li ng-repeat="item in items">
-                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                    <a href="#"
+                       ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
                 </li>
             </ul>
             Selected: <b>{{ selected.item }}</b>
@@ -79,7 +93,11 @@
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
-    <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
+
+    <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+    <!--<button type="button" class="btn btn-default"-->
+            <!--ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>-->
+
     <div ng-show="selected">Selection from a modal: {{ selected }}</div>
     </body>
 </html>

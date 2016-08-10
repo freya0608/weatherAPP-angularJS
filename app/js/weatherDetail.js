@@ -4,44 +4,40 @@
 
 var app=angular.module('myapp',['ui.bootstrap']);
 app.controller('indexController',function($scope,$http,$uibModal,$log){
-
     $scope.items = ['item1', 'item2', 'item3'];
-
     $scope.animationsEnabled = true;
-
-    $scope.open = function (size) {
+    $scope.open = function () {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: 'myModalContent.html',
-            controller: 'ModalInstanceCtrl',
-            size: size,
+            templateUrl: 'myModalCity.html',
+            controller: 'ModalCityCtrl',
             resolve: {
                 items: function () {
                     return $scope.items;
                 }
             }
         });
-
         modalInstance.result.then(function (selectedItem) {
             $scope.selected = selectedItem;
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+
+    $scope.toggleAnimation = function () {
+        $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
     var  cityList=[];
     var loadList= function(){
         $http({
             method:'GET',
-            url:'json/cityList.json'
+            url:'app/json/cityList.json'
         }).then(function(res){
             cityList = res.data;
             //console.log(res.data);
         })
     };
     loadList();
-
-
-
     var loadData = function(cb){
         var cityId =[];
         var detail=[];
@@ -55,8 +51,7 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
             });
             if(cb) cb(cityList);
         }
-
-    }
+    };
 
     $scope.forecast = function(){
         var cb = function(cityList){
@@ -71,7 +66,8 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
     }
 });
 
-angular.module('myapp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+angular.module('myapp').controller('ModalCityCtrl',
+    function ($scope, $uibModalInstance, items) {
 
     $scope.items = items;
     $scope.selected = {
