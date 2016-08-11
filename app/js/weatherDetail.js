@@ -29,22 +29,26 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
     };
     var  cityList=[];
     var loadList= function(){
+        console.log("6666")
         $http({
             method:'GET',
             url:'app/json/cityList.json'
         }).then(function(res){
             cityList = res.data;
-            //console.log(res.data);
-        })
+            $scope.cityLists = cityList;
+            console.log(cityList[0].d4);
+
+        });
     };
     loadList();
     var loadData = function(cb){
         var cityId =[];
         var detail=[];
-
         for(var i=0;i<cityList.length;i++){
             cityId = cityList[i].d1;
+            $scope.cityLists = cityList[i].d4;
             console.log(cityList[0].d1);
+            console.log("d4",cityList[0].d4);
             $http.jsonp('http://wthrcdn.etouch.cn/WeatherApi?citykey='+cityId).then(function(res){
                 detail = res.data;
                 console.log(res.data);
@@ -52,7 +56,6 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
             if(cb) cb(cityList);
         }
     };
-
     $scope.forecast = function(){
         var cb = function(cityList){
             var forecastWeather =cityList.data;

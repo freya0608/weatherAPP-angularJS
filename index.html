@@ -77,7 +77,7 @@
 
     <script type="text/ng-template" id="myModalCity.html">
         <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
+            <h3 class="modal-title">请选择城市</h3>
         </div>
         <div class="modal-body">
             <ul>
@@ -86,7 +86,7 @@
                        ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
                 </li>
             </ul>
-            Selected: <b>{{ selected.item }}</b>
+             <b>{{ selected.item }}</b>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
@@ -98,6 +98,6 @@
     <!--<button type="button" class="btn btn-default"-->
             <!--ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>-->
 
-    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+    <div ng-show="selected">您选择了: {{ selected }}</div>
     </body>
 </html>
