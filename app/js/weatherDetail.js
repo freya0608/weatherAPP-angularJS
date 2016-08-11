@@ -4,7 +4,7 @@
 
 var app=angular.module('myapp',['ui.bootstrap']);
 app.controller('indexController',function($scope,$http,$uibModal,$log){
-    $scope.items = ['item1', 'item2', 'item3'];
+    // $scope.items = ['item1', 'item2', 'item3'];
     $scope.animationsEnabled = true;
     $scope.open = function () {
         var modalInstance = $uibModal.open({
@@ -12,8 +12,8 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
             templateUrl: 'myModalCity.html',
             controller: 'ModalCityCtrl',
             resolve: {
-                items: function () {
-                    return $scope.items;
+                cityLists: function () {
+                    return $scope.cityLists;
                 }
             }
         });
@@ -29,15 +29,17 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
     };
     var  cityList=[];
     var loadList= function(){
-        console.log("6666")
+        console.log("6666");
         $http({
             method:'GET',
             url:'app/json/cityList.json'
         }).then(function(res){
             cityList = res.data;
-            $scope.cityLists = cityList;
             console.log(cityList[0].d4);
-
+            for(var i =0;i<cityList.length;i++){
+                $scope.cityLists = cityList[i].d4;
+                console.log("6666",cityList[0].d4);
+            }
         });
     };
     loadList();
@@ -70,15 +72,16 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
 });
 
 angular.module('myapp').controller('ModalCityCtrl',
-    function ($scope, $uibModalInstance, items) {
+    function ($scope, $uibModalInstance, cityLists) {
 
-    $scope.items = items;
+
+    $scope.cityLists = cityLists;
     $scope.selected = {
-        item: $scope.items[0]
+        cityList: $scope.cityLists[0]
     };
 
     $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
+        $uibModalInstance.close($scope.selected.cityList);
     };
 
     $scope.cancel = function () {

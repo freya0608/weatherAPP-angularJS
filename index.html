@@ -81,12 +81,12 @@
         </div>
         <div class="modal-body">
             <ul>
-                <li ng-repeat="item in items">
+                <li ng-repeat="cityList in cityLists">
                     <a href="#"
-                       ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                       ng-click="$event.preventDefault(); selected.cityList = cityList">{{ cityList }}</a>
                 </li>
             </ul>
-             <b>{{ selected.item }}</b>
+             <b>{{ selected.cityList }}</b>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
