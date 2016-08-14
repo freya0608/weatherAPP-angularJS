@@ -13,17 +13,19 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
             controller: 'ModalCityCtrl',
             resolve: {
                 cityLists: function () {
-                    return $scope.cityLists;
+                    return cityList;
                 }
             }
         });
         modalInstance.result.then(function (selectedItem) {
+            console.log('selected:',selectedItem);
             $scope.selected = selectedItem;
+            console.log($scope.selected.d1);
+            loadData();
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-
     $scope.toggleAnimation = function () {
         $scope.animationsEnabled = !$scope.animationsEnabled;
     };
@@ -35,55 +37,36 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
             url:'app/json/cityList.json'
         }).then(function(res){
             cityList = res.data;
-            console.log(cityList[0].d4);
-            for(var i =0;i<cityList.length;i++){
-                $scope.cityLists = cityList[i].d4;
-                console.log("6666",cityList[0].d4);
-            }
         });
     };
     loadList();
-    var loadData = function(cb){
-        var cityId =[];
+    var loadData = function(){
         var detail=[];
-        for(var i=0;i<cityList.length;i++){
-            cityId = cityList[i].d1;
-            $scope.cityLists = cityList[i].d4;
-            console.log(cityList[0].d1);
-            console.log("d4",cityList[0].d4);
-            $http.jsonp('http://wthrcdn.etouch.cn/WeatherApi?citykey='+cityId).then(function(res){
-                detail = res.data;
-                console.log(res.data);
-            });
-            if(cb) cb(cityList);
-        }
+        console.log("d1",$scope.selected.d1);
+        $http({method:'JSONP',
+            url:'http://wthrcdn.etouch.cn/weather_mini?citykey='
+            +$scope.selected.d1+'&callback=JSON_CALLBACK',
+            headers:{
+                "Accept":"application/xml",
+                "Content-Type":"application/xml"
+            },
+            responseType:"text"
+        }).success(function (res) {
+            $scope.weather = res.data;
+             console.log(res.data);
+        });
     };
-    $scope.forecast = function(){
-        var cb = function(cityList){
-            var forecastWeather =cityList.data;
-            for(var i=0;i<forecastWeather.forecast.length;i++){
-                $scope.today = forecastWeather.forecast[0];
-                $scope.tomorrow = forecastWeather.forecast[1];
-                $scope.third = forecastWeather.forecast[2];
-            }
-        };
-        loadData(cb);
-    }
 });
 
 angular.module('myapp').controller('ModalCityCtrl',
     function ($scope, $uibModalInstance, cityLists) {
-
-
     $scope.cityLists = cityLists;
-    $scope.selected = {
-        cityList: $scope.cityLists[0]
+    $scope.ok = function (selected) {
+        if(!selected && !selected.d2){
+            return;
+        }
+        $uibModalInstance.close(selected);
     };
-
-    $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.cityList);
-    };
-
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
