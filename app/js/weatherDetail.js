@@ -3,7 +3,7 @@
  */
 
 var app=angular.module('myapp',['ui.bootstrap']);
-app.controller('indexController',function($scope,$http,$uibModal,$log){
+app.controller('indexController',function($scope,$http,$uibModal,$log,$timeout){
     // $scope.items = ['item1', 'item2', 'item3'];
     $scope.animationsEnabled = true;
     $scope.open = function () {
@@ -54,15 +54,28 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
         }).success(function (res) {
             $scope.weather = res.data;
             $scope.today = $scope.weather.forecast[0];
+            $scope.forecasts = $scope.weather.forecast;
             
             console.log("forecast",$scope.weather.forecast);
              console.log(res.data);
         });
     };
     
-    $scope.selectCity = function () {
+    $scope.inputCity = function () {
         ok();
+    };
+    
+    $scope.checkRefresh =function () {
+        if($scope.refreshLoading) return;
+        $scope.refreshLoading=true;
+        $timeout(function () {
+            loadList();
+            $scope.refreshLoading=false;
+            },2000);
     }
+
+
+
     
     
 });

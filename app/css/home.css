@@ -4,3 +4,16 @@
 .weather-bg{
     background-image: url("../weather/app/img/biz_plugin_weather_bg.jpg");
  }
+.img-weather{
+    height: 40px;
+    width: 40px;
+}
+.img-cold{
+    float: left;
+    height: 60px;
+    width: 33%;
+    margin-top: 20px;
+}
+.icon-size{
+    font-size: 26px !important;
+}
