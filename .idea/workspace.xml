@@ -40,8 +40,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+            <state relative-caret-position="241">
+              <caret line="93" column="44" selection-start-line="93" selection-start-column="44" selection-end-line="93" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -343,7 +343,7 @@
       <workItem from="1470994328005" duration="806000" />
       <workItem from="1470999035293" duration="203000" />
       <workItem from="1471142837112" duration="25693000" />
-      <workItem from="1471180278394" duration="4950000" />
+      <workItem from="1471180278394" duration="5199000" />
     </task>
     <task id="LOCAL-00001" summary="list">
       <created>1470922228320</created>
@@ -387,11 +387,18 @@
       <option name="project" value="LOCAL" />
       <updated>1471182049878</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="图片">
+      <created>1471185256796</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1471185256796</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72902000" />
+    <option name="totallyTimeSpent" value="73151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="26" y="7" width="1789" height="990" extended-state="0" />
@@ -456,7 +463,8 @@
     <MESSAGE value="页面布局" />
     <MESSAGE value="refresh" />
     <MESSAGE value="bg" />
-    <option name="LAST_COMMIT_MESSAGE" value="bg" />
+    <MESSAGE value="图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="图片" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -832,8 +840,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+        <state relative-caret-position="241">
+          <caret line="93" column="44" selection-start-line="93" selection-start-column="44" selection-end-line="93" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
