@@ -31,18 +31,18 @@ app.controller('indexController',function($scope,$http,$uibModal,$log,$timeout){
     };
     var  cityList=[];
     var loadList= function(){
-        console.log("6666");
         $http({
             method:'GET',
             url:'app/json/cityList.json'
         }).then(function(res){
             cityList = res.data;
+            $scope.selected = cityList[0];
+            loadData();
         });
     };
     loadList();
     var loadData = function(){
-        var detail=[];
-        console.log("d1",$scope.selected.d1);
+        console.log("d1",$scope.selected);
         $http({method:'JSONP',
             url:'http://wthrcdn.etouch.cn/weather_mini?citykey='
             +$scope.selected.d1+'&callback=JSON_CALLBACK',
@@ -55,29 +55,22 @@ app.controller('indexController',function($scope,$http,$uibModal,$log,$timeout){
             $scope.weather = res.data;
             $scope.today = $scope.weather.forecast[0];
             $scope.forecasts = $scope.weather.forecast;
-            
             console.log("forecast",$scope.weather.forecast);
              console.log(res.data);
         });
     };
-    
-    $scope.inputCity = function () {
-        ok();
-    };
-    
+
     $scope.checkRefresh =function () {
-        if($scope.refreshLoading) return;
         $scope.refreshLoading=true;
+
+        loadData();
         $timeout(function () {
-            loadList();
             $scope.refreshLoading=false;
-            },2000);
+            },1000);
+        console.log($scope.refreshLoading);
+
     }
 
-
-
-    
-    
 });
 
 angular.module('myapp').controller('ModalCityCtrl',
@@ -88,6 +81,15 @@ angular.module('myapp').controller('ModalCityCtrl',
             return;
         }
         $uibModalInstance.close(selected);
+    };
+    $scope.inputCity = function () {
+        console.log($scope.city);
+        for(var i=0;i<cityLists.length;i++){
+            if($scope.city === cityLists[i].d2){
+                $scope.selected = cityLists[i];
+                $uibModalInstance.close($scope.selected);
+            }
+        }
     };
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');

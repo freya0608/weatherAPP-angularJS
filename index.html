@@ -13,22 +13,22 @@
     <script src="lib/bower_components/angular/angular.min.js"></script>
     <script src="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="lib/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-    <script src="lib/angular-route.js"></script>
-    <script src="lib/xmlToJSON.js"></script>
     <script src="app/js/weatherDetail.js"></script>
 </head>
 <body ng-app="myapp" ng-controller="indexController">
-    <div class="nav navbar"
-         style="background-color:#398439 ">
+    <div class="nav navbar nav-margin"
+         style="background-color:#db2021 ;color: white">
             <ul class="navbar-header icon-color">
                 <li class="navbar-brand fa fa-home " ng-click="open()" >{{weather.city||"北京"}}天气</li>
                 <li class="glyphicon glyphicon-map-marker navbar-brand icon-size"></li>
-                <li class="fa fa-refresh navbar-brand    icon-size"
-                    ng-class="{'fa-spin':$scope.refreshLoading}" ng-click="checkRefresh()"></li>
+                <li class="fa fa-refresh navbar-brand icon-size"
+                    ng-class="{'fa fa-spin':$scope.refreshLoading}"
+                    ng-click="checkRefresh()"></li>
             </ul>
     </div>
 <!--整体内容-->
-    <div class="container" style="background-color:#0f0f0f ">
+    <div class="container" style="background-image:url('/weather/app/img/biz_plugin_weather_bg.jpg');height: 100%;
+    width: 100%;background-size: 100% 100%;color: white">
         <div class="col-">
             <!-- 城市名称布局-->
             <div class=" col-sm-6 col-md-6 col-xs-6" >
@@ -47,9 +47,10 @@
         <!-- 当天天气布局-->
         <div class="col-sm-12  col-xs-12 " style="text-align: center">
                 <div class="col-xs-4">
-                    <span ng-if="today.type==='多云'" class="fa fa-cloud" style="font-size: 60px"></span>
+                    <span ng-if="today.type==='多云'" class="fa fa-cloud today-img" ></span>
+                    <span ng-if="today.type==='阴'" class="fa fa-cloud today-img"></span>
                     <span ng-if="today.type==='晴'" class="good"><img src="/weather/app/img/good.png" class="img-weather"></span>
-                    <span ng-if="today.type==='阵雨'" ><img src="/weather/app/img/rain.png" class="img-weather"></span>
+                    <span ng-if="today.type==='阵雨'" class="good" ><img src="/weather/app/img/rain.png" class="img-weather"></span>
                 </div>
                 <div class="col-xs-8">
                     <h3>{{today.date}}</h3>
@@ -59,22 +60,20 @@
                 </div>
 
         </div>
-        <!-- 未来三天布局-->
+        <!-- 未来五天布局-->
         <div class="">
             <div ng-repeat=" forecast in forecasts">
                 <div class="col-xs-4 ">
                     <h3>{{forecast.date| limitTo : -3}}</h3>
-                    <span ng-if="forecast.type==='多云'" class="fa fa-cloud" style="font-size: 40px"></span>
+                    <span ng-if="forecast.type==='多云'" class="fa fa-cloud forecast-img" style="font-size: 40px"></span>
+                    <span ng-if="forecast.type==='阴'" class="fa fa-cloud forecast-img" style="font-size: 40px"></span>
                     <span ng-if="forecast.type==='晴'" class="good"><img src="/weather/app/img/good.png" class="img-weather"></span>
-                    <span ng-if="forecast.type==='阵雨'" ><img src="/weather/app/img/rain.png" class="img-weather"></span>
+                    <span ng-if="forecast.type.indexOf('雨')!==-1" ><img src="/weather/app/img/rain.png" class="img-weather"></span>
                     <h5>{{forecast.low | limitTo : -4}}-{{forecast.high | limitTo : -4}}</h5>
                     <h4>{{forecast.type}}</h4>
                     <h4>{{forecast.fengli}}</h4>
                 </div>
-
             </div>
-
-
         </div>
 
     </div>
@@ -112,10 +111,10 @@
         </div>
     </script>
 
-    <button type="button" class="btn btn-default" ng-click="open()">选择城市</button>
-    <!--<button type="button" class="btn btn-default"-->
-            <!--ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>-->
+    <!--<button type="button" class="btn btn-default" ng-click="open()">选择城市</button>-->
+    <!--&lt;!&ndash;<button type="button" class="btn btn-default"&ndash;&gt;-->
+            <!--&lt;!&ndash;ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>&ndash;&gt;-->
 
-    <div ng-show="selected">您选择了: {{selected.d2}}</div>
+    <!--<div ng-show="selected">您选择了: {{selected.d2}}</div>-->
     </body>
 </html>

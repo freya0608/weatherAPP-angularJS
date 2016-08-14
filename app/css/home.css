@@ -1,6 +1,9 @@
 .icon-color{
     color: white;
 }
+.nav-margin{
+    margin-bottom: 0 !important;
+}
 .weather-bg{
     background-image: url("../weather/app/img/biz_plugin_weather_bg.jpg");
  }
@@ -16,4 +19,13 @@
 }
 .icon-size{
     font-size: 26px !important;
+}
+.today-img{
+    font-size: 60px !important;
+    color: white !important;
+}
+.forecast-img{
+    font-size: 40px;
+    color: white;
+
 }
