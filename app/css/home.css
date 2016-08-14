@@ -1,3 +1,6 @@
 .icon-color{
     color: white;
 }
+.weather-bg{
+    background-image: url("../weather/app/img/biz_plugin_weather_bg.jpg");
+ }

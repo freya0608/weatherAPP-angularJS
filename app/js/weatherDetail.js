@@ -53,9 +53,18 @@ app.controller('indexController',function($scope,$http,$uibModal,$log){
             responseType:"text"
         }).success(function (res) {
             $scope.weather = res.data;
+            $scope.today = $scope.weather.forecast[0];
+            
+            console.log("forecast",$scope.weather.forecast);
              console.log(res.data);
         });
     };
+    
+    $scope.selectCity = function () {
+        ok();
+    }
+    
+    
 });
 
 angular.module('myapp').controller('ModalCityCtrl',

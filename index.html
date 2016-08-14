@@ -21,8 +21,8 @@
     <div class="nav navbar"
          style="background-color:#398439 ">
             <ul class="navbar-header icon-color">
-                <li class="fa fa-home " href="app/view/cityList.html">
-                    <a class="navbar-brand">北京天气</a>
+                <li class="fa fa-home " >
+                    <a class="navbar-brand" ng-click="open()">{{weather.city||"北京"}}天气</a>
                 </li>
                 <li class="glyphicon glyphicon-map-marker "></li>
                 <li class="fa fa-refresh "></li>
@@ -30,71 +30,62 @@
     </div>
 <!--整体内容-->
     <div class="container">
-        <div class="">
+        <div class="col-">
             <!-- 城市名称布局-->
-            <div class=" col-sm-6" ng-repeat="weather in weathers">
-                <div class="col-sm-4">{{weather.city}}
-                    <span>今天发布</span>
+            <div class=" col-sm-6 col-md-6 col-xs-6" >
+                <div class="col-sm-4">
+                    <h3>{{weather.city||"北京"}}</h3>
+                    <h4>温度：{{weather.wendu}}℃"</h4>
                 </div>
-                <!--<div class="col-sm-4">-->
-                    <!--<span>湿度：{{weather.shidu}}-->
-                    <!--</span>-->
-                <!--</div>-->
             </div>
             <!--pm2.5-->
-            <!--<div class="col-sm-6" ng-repeat="environment in weather.environment ">-->
-                <!--<span>PM2.5-->
-                    <!--<li>{{environment.pm25}}</li>-->
-                <!--</span>-->
-                <!--<i class="fa fa-user"></i>-->
-                <!--<div>{{environment.quality}}</div>-->
-            <!--</div>-->
+            <div class="col-sm-6 col-md-6  col-xs-6">
+                <i class="fa fa-user"></i>
+                <p>{{weather.ganmao}}</p>
+            </div>
         </div>
         <!-- 当天天气布局-->
-        <div class="col-sm-2 col-sm-8" ng-repeat="forecast in weather.forecast">
-            <i ng-if="" class="">
+        <div class="col-sm-12  col-xs-12 ">
+            <i  class="">
                 <img src="">
-                <p>{{forecast.date}}</p>
-                <p>{{forecast.low | limitTo : -4 }}- {{forecast.high | limitTo :-4 }}</p>
-                <p>{{forecast.type}}</p>
-                <p>{{forecast.fengxiang}}</p>
+                <h3>{{today.date}}</h3>
+                <h3>{{today.low | limitTo : -4 }}- {{today.high | limitTo :-4 }}</h3>
+                <h4>{{today.type}}</h4>
+                <h4>{{today.fengli}}</h4>
+
             </i>
         </div>
-
+        <!-- 未来三天布局-->
         <div class="">
             <!--forecast第二组数据-->
             <div class="col-sm-4">
 
-
             </div>
 
         </div>
-
-        <!-- 未来三天布局-->
 
     </div>
 
 
     <script type="text/ng-template" id="myModalCity.html">
-        <button ng-click="cancel()">返回</button>
+        <a style="padding: 10px" ng-click="cancel()">返回</a>
         <div class="modal-header">
             <h3 class="modal-title">请选择城市</h3>
         </div>
         <div class="modal-body">
             <form class="navbar-form navbar-left col-md-12" role="search">
                 <label>
-                    <i class=""></i>
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="city"
                                name="city"
                                placeholder="请输入城市名称">
                     </div>
                     <button type="submit" class="btn btn-default"
-                            ng-click="editCity()">Submit</button>
+                            ng-click="selectCity()">搜索</button>
                 </label>
             </form>
-            <ul class="">
-                <li ng-repeat="cityList in cityLists">
+            <ul class="" >
+                <li style="list-style-type: none;border-bottom: 1px solid #e2e2e2;padding: 10px" ng-repeat="cityList in cityLists">
                     <a href="#"
                        ng-click="ok(cityList);">
                         {{ cityList.d2 | limitTo:10 }}</a>
