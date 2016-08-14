@@ -19,7 +19,8 @@
     <div class="nav navbar nav-margin"
          style="background-color:#db2021 ;color: white">
             <ul class="navbar-header icon-color">
-                <li class="navbar-brand fa fa-home " ng-click="open()" >{{weather.city||"北京"}}天气</li>
+                <li class=" navbar-brand fa fa-home " ng-click="open()" >
+                    {{weather.city||"北京"}}天气</li>
                 <li class="glyphicon glyphicon-map-marker navbar-brand icon-size"></li>
                 <li class="fa fa-refresh navbar-brand icon-size"
                     ng-class="{'fa fa-spin':$scope.refreshLoading}"
@@ -35,7 +36,7 @@
                 <div class="col-sm-4">
                     <h3>{{weather.city||"北京"}}</h3>
                     <h4>今天发布</h4>
-                    <h4>温度：{{weather.wendu}}℃"</h4>
+                    <h4>温度：{{weather.wendu}}℃</h4>
                 </div>
             </div>
             <!--pm2.5-->
@@ -46,27 +47,30 @@
         </div>
         <!-- 当天天气布局-->
         <div class="col-sm-12  col-xs-12 " style="text-align: center">
-                <div class="col-xs-4">
-                    <span ng-if="today.type==='多云'" class="fa fa-cloud today-img" ></span>
+                <div class="col-xs-4" style="margin-top: 25px">
+                    <span ng-if="today.type==='多云'"><img src="/weather/app/img/cloud_good.png" class="img-weather-60"></span>
                     <span ng-if="today.type==='阴'" class="fa fa-cloud today-img"></span>
-                    <span ng-if="today.type==='晴'" class="good"><img src="/weather/app/img/good.png" class="img-weather"></span>
-                    <span ng-if="today.type==='阵雨'" class="good" ><img src="/weather/app/img/rain.png" class="img-weather"></span>
+                    <span ng-if="today.type==='晴'" class="good"><img src="/weather/app/img/good.png" class="img-weather-60"></span>
+                    <span ng-if="today.type==='阵雨'" class="good" ><img src="/weather/app/img/rain.png" class="img-weather-60"></span>
                 </div>
                 <div class="col-xs-8">
-                    <h3>{{today.date}}</h3>
+                    <h3>今天</h3>
                     <h3>{{today.low | limitTo : -4 }}- {{today.high | limitTo :-4 }}</h3>
                     <h4>{{today.type}}</h4>
                     <h4>{{today.fengli}}</h4>
                 </div>
 
         </div>
-        <!-- 未来五天布局-->
+        <!-- 未来四天布局-->
         <div class="">
-            <div ng-repeat=" forecast in forecasts">
+            <div ng-repeat=" forecast in forecasts " ng-if="$index > 0">
                 <div class="col-xs-4 ">
                     <h3>{{forecast.date| limitTo : -3}}</h3>
-                    <span ng-if="forecast.type==='多云'" class="fa fa-cloud forecast-img" style="font-size: 40px"></span>
-                    <span ng-if="forecast.type==='阴'" class="fa fa-cloud forecast-img" style="font-size: 40px"></span>
+                    <span ng-if="forecast.type==='多云'" >
+                        <img src="/weather/app/img/cloud_good.png" class="img-weather"></span>
+                    <span ng-if="forecast.type==='阴'" >
+                        <img src="/weather/app/img/cloud.png" class="img-weather">
+                    </span>
                     <span ng-if="forecast.type==='晴'" class="good"><img src="/weather/app/img/good.png" class="img-weather"></span>
                     <span ng-if="forecast.type.indexOf('雨')!==-1" ><img src="/weather/app/img/rain.png" class="img-weather"></span>
                     <h5>{{forecast.low | limitTo : -4}}-{{forecast.high | limitTo : -4}}</h5>
@@ -91,9 +95,10 @@
                         <input type="text" class="form-control" ng-model="city"
                                name="city"
                                placeholder="请输入城市名称">
+                        <button type="submit" class="btn btn-default"
+                                ng-click="inputCity()">搜索</button>
                     </div>
-                    <button type="submit" class="btn btn-default"
-                            ng-click="inputCity()">搜索</button>
+
                 </label>
             </form>
             <ul class="" >
@@ -110,11 +115,5 @@
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
-
-    <!--<button type="button" class="btn btn-default" ng-click="open()">选择城市</button>-->
-    <!--&lt;!&ndash;<button type="button" class="btn btn-default"&ndash;&gt;-->
-            <!--&lt;!&ndash;ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>&ndash;&gt;-->
-
-    <!--<div ng-show="selected">您选择了: {{selected.d2}}</div>-->
     </body>
 </html>

@@ -11,6 +11,11 @@
     height: 40px;
     width: 40px;
 }
+.img-weather-60{
+    height: 13vh;
+    width: 23vw;
+
+}
 .img-cold{
     float: left;
     height: 60px;
