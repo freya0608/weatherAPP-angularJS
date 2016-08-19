@@ -16,20 +16,21 @@
     <script src="app/js/weatherDetail.js"></script>
 </head>
 <body ng-app="myapp" ng-controller="indexController">
-    <div class="nav navbar nav-margin"
-         style="background-color:#db2021 ;color: white">
-            <ul class="navbar-header icon-color">
-                <li class=" navbar-brand fa fa-home " ng-click="open()" >
-                    {{weather.city||"北京"}}天气</li>
-                <li class="glyphicon glyphicon-map-marker navbar-brand icon-size"></li>
-                <li class="fa fa-refresh navbar-brand icon-size"
-                    ng-class="{'fa fa-spin':$scope.refreshLoading}"
-                    ng-click="checkRefresh()"></li>
-            </ul>
+    <div class="nav navbar nav-margin">
+            <div class="navbar-header icon-color">
+                <span class=" navbar-brand fa fa-home " ng-click="open()" >
+                <span class="city-border"> {{weather.city||"北京"}}天气</span></span>
+                <ul class="pull-right">
+                    <li class="glyphicon glyphicon-map-marker navbar-brand icon-size"></li>
+                    <li class="fa fa-refresh navbar-brand icon-size"
+                        ng-class="{'fa-spin':refreshLoading}"
+                        ng-click="checkRefresh()"></li>
+                </ul>
+
+            </div>
     </div>
 <!--整体内容-->
-    <div class="container" style="background-image:url('/weather/app/img/biz_plugin_weather_bg.jpg');height: 100%;
-    width: 100%;background-size: 100% 100%;color: white">
+    <div class="container weather-bg" style="">
         <div class="col-">
             <!-- 城市名称布局-->
             <div class=" col-sm-6 col-md-6 col-xs-6" >
@@ -40,14 +41,14 @@
                 </div>
             </div>
             <!--pm2.5-->
-            <div class="col-sm-6 col-md-6  col-xs-6" style="padding:10px  0">
-                <img class="img-cold" src="/weather/app/img/cold.png">
-                <span class="col-xs-8" style="padding: 10px 0">{{weather.ganmao}}</span>
+            <div class="col-sm-6 col-md-6  col-xs-6 paddingLeft-1">
+                <img class="img-cold img-responsive" src="/weather/app/img/cold.png">
+                <span class="col-xs-8 padding-ganmao" >{{weather.ganmao}}</span>
             </div>
         </div>
         <!-- 当天天气布局-->
-        <div class="col-sm-12  col-xs-12 " style="text-align: center">
-                <div class="col-xs-4" style="margin-top: 25px">
+        <div class="col-sm-12  col-xs-12 text-center">
+                <div class="col-xs-4 marginTop-1">
                     <span ng-if="today.type==='多云'"><img src="/weather/app/img/cloud_good.png" class="img-weather-60"></span>
                     <span ng-if="today.type==='阴'" class="fa fa-cloud today-img"></span>
                     <span ng-if="today.type==='晴'" class="good"><img src="/weather/app/img/good.png" class="img-weather-60"></span>
@@ -63,7 +64,7 @@
         </div>
         <!-- 未来四天布局-->
         <div class="">
-            <div ng-repeat=" forecast in forecasts " ng-if="$index > 0">
+            <div ng-repeat=" forecast in forecasts " ng-if="$index > 0  &&$index <4">
                 <div class="col-xs-4 ">
                     <h3>{{forecast.date| limitTo : -3}}</h3>
                     <span ng-if="forecast.type==='多云'" >
@@ -81,39 +82,41 @@
         </div>
 
     </div>
-
-
     <script type="text/ng-template" id="myModalCity.html">
-        <a style="padding: 10px" ng-click="cancel()">返回</a>
-        <div class="modal-header">
-            <h3 class="modal-title">请选择城市</h3>
-        </div>
-        <div class="modal-body">
-            <form class="navbar-form navbar-left col-md-12" role="search">
-                <label>
-                    <div class="form-group">
-                        <input type="text" class="form-control" ng-model="city"
-                               name="city"
-                               placeholder="请输入城市名称">
-                        <button type="submit" class="btn btn-default"
-                                ng-click="inputCity()">搜索</button>
-                    </div>
+        <div class="modal-bg">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span class="glyphicon glyphicon-chevron-left pull-left" ng-click="cancel()"></span>
+                    <h3 class="text-center">请选择城市</h3>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form class="navbar-form navbar-left col-sm-12 col-md-12 col-xs-12" role="search">
+                        <div class="col-xs-8 col-sm-8 ">
+                            <input type="text" class="form-control" ng-model="city"
+                                   name="city"
+                                   placeholder="请输入城市名称">
+                        </div>
+                        <div class="col-xs-4 col-sm-4 ">
+                            <button type="submit" class="btn btn-default" ng-click="inputCity()">搜索</button>
+                        </div>
+                </form>
+                <ul class="city-list" >
+                    <li style="list-style-type: none;border-bottom: 1px solid #e2e2e2;padding: 10px" ng-repeat="cityList in cityLists">
+                        <a href="#"
+                           ng-click="ok(cityList);">
+                            {{ cityList.d2 | limitTo:10 }}</a>
+                    </li>
+                </ul>
+                <b>{{ selected.cityList }}</b>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            </div>
 
-                </label>
-            </form>
-            <ul class="" >
-                <li style="list-style-type: none;border-bottom: 1px solid #e2e2e2;padding: 10px" ng-repeat="cityList in cityLists">
-                    <a href="#"
-                       ng-click="ok(cityList);">
-                        {{ cityList.d2 | limitTo:10 }}</a>
-                </li>
-            </ul>
-             <b>{{ selected.cityList }}</b>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
+
     </script>
     </body>
 </html>

@@ -4,7 +4,6 @@
 
 var app=angular.module('myapp',['ui.bootstrap']);
 app.controller('indexController',function($scope,$http,$uibModal,$log,$timeout){
-    // $scope.items = ['item1', 'item2', 'item3'];
     $scope.animationsEnabled = true;
     $scope.open = function () {
         var modalInstance = $uibModal.open({
@@ -62,17 +61,12 @@ app.controller('indexController',function($scope,$http,$uibModal,$log,$timeout){
 
     $scope.checkRefresh =function () {
         $scope.refreshLoading=true;
-
         loadData();
         $timeout(function () {
             $scope.refreshLoading=false;
             },1000);
-        console.log($scope.refreshLoading);
-
     }
-
 });
-
 angular.module('myapp').controller('ModalCityCtrl',
     function ($scope, $uibModalInstance, cityLists) {
     $scope.cityLists = cityLists;

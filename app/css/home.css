@@ -3,10 +3,20 @@
 }
 .nav-margin{
     margin-bottom: 0 !important;
+    background-color:#db2021 ;
+    color: white
 }
 .weather-bg{
-    background-image: url("../weather/app/img/biz_plugin_weather_bg.jpg");
+    background-image:url('/weather/app/img/biz_plugin_weather_bg.jpg');
+    height: 100vh;
+    width: 100%;
+    background-size: 100% 100%;
+    color: white;
  }
+.city-border{
+    border-left: 1px solid #666;
+    padding-left: 10px;
+}
 .img-weather{
     height: 40px;
     width: 40px;
@@ -33,4 +43,36 @@
     font-size: 40px;
     color: white;
 
+}
+.city-list{
+    padding: 20px;
+}
+.modal-title .glyphicon{
+    font-size: 25px;
+    color: #db2021;
+}
+.navbar ul{
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+.navbar .fa-home{
+    font-size: 24px;
+    padding-right: 10px;
+}
+.modal-body .btn:hover{
+    background-color:#db2021 ;
+    color: white;
+}
+.modal-body input:focus{
+    border-color:#db2021 ;
+}
+.paddingLeft-1{
+    padding-left: 10px !important;
+}
+
+.marginTop-1{
+    margin-top: 10px !important;
+}
+.padding-ganmao{
+    padding:10px  0 !important;
 }
